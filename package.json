@@ -1,0 +1,23 @@
+{
+  "name": "narc-dev-agency",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^4.0.0",
+    "@fontsource-variable/archivo": "^5.0.9",
+    "@fontsource/anton": "^5.0.8",
+    "astro": "^2.10.14",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.37.1"
+  }
+}

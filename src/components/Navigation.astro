@@ -1,0 +1,50 @@
+---
+import "@fontsource/anton";
+---
+
+<ul>
+  <li>
+    <menu>
+      <a href="/about">About</a>
+    </menu>
+  </li>
+  <li>
+    <menu>
+      <a href="/services"> Services</a>
+    </menu>
+  </li>
+  <li>
+    <menu>
+      <a href="/projects">project</a>
+    </menu>
+  </li>
+  <li>
+    <menu>
+      <a href="/blogs">Blog</a>
+    </menu>
+  </li>
+  <li>
+    <menu>
+      <a href="/contact">Contact</a>
+    </menu>
+  </li>
+</ul>
+
+<style>
+  ul {
+    @apply inline-flex items-start gap-6;
+  }
+  li {
+    @apply flex justify-center items-center;
+  }
+  menu {
+    @apply flex justify-center items-center;
+  }
+  menu svg {
+    @apply hidden hover:block;
+  }
+  menu a {
+    font-family: "Anton", sans-serif;
+    @apply text-netural-100 dark:text-netural-0 text-lg hover:underline underline-offset-1 transition-all ease-in-out duration-300 uppercase leading-3 tracking-wider not-italic font-normal;
+  }
+</style>
