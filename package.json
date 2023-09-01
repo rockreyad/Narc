@@ -12,7 +12,8 @@
     "check": "astro check",
     "pretify": "prettier --plugin=prettier-plugin-astro --write src",
     "prettier:check": "prettier --check --plugin=prettier-plugin-astro src",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "commitlint": "commitlint --edit"
   },
   "dependencies": {
     "@astrojs/tailwind": "^4.0.0",
@@ -22,6 +23,8 @@
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@playwright/test": "^1.37.1",
     "eslint": "^8.48.0",
     "eslint-plugin-astro": "^0.29.0",
