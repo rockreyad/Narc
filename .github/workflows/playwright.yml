@@ -17,59 +17,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 16  # Replace with your desired Node.js version
 
       - name: Install pnpm
         run: |
-          export SHELL=/bin/bash
-          curl -fsSL https://get.pnpm.io/install.sh | sh -
-          echo 'export PATH="$HOME/.pnpm-global/bin:$PATH"' >> $HOME/.bashrc
-        shell: bash
-
-      - name: Get pnpm store directory
-        id: pnpm-store
-        run: |
-          echo "STORE_PATH=$(pnpm store path --global --silent)" >> $GITHUB_ENV
-
-      - name: Cache pnpm store
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: Get Playwright version
-        id: playwright-version
-        run: |
-          PLAYWRIGHT_VERSION=$(pnpm ls --json @playwright/test | jq --raw-output '.dependencies["@playwright/test"].version')
-          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+          npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install --store ${{ steps.pnpm-store.outputs.STORE_PATH }}
-
-      - name: Cache Playwright browser binaries
-        id: playwright-cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/ms-playwright
-          key: "${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}"
-          restore-keys: |
-            ${{ runner.os }}-playwright-
-
-      - name: Install Playwright browser binaries & OS dependencies
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm exec -- npx playwright install --with-deps ./tests --store ${{ steps.pnpm-store.outputs.STORE_PATH }}
-
-      - name: Install Playwright OS dependencies
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: pnpm exec -- npx playwright install-deps ./tests --store ${{ steps.pnpm-store.outputs.STORE_PATH }}
+        run: |
+          pnpm install
 
       - name: Run Playwright tests
-        run: pnpm exec -- npx playwright test ./tests --store ${{ steps.pnpm-store.outputs.STORE_PATH }}
+        run: |
+          pnpm run test:e2e
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v2
