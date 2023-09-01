@@ -22,11 +22,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install latest pnpm
+      - name: Install pnpm
         run: |
-          curl -L https://get.pnpm.io | sh -s -- --global latest
+          curl -L https://get.pnpm.io | bash -s -- --global latest
           echo "::add-path::$HOME/.pnpm-global/bin"
-        
+
       - name: Get pnpm store directory
         id: pnpm-store
         run: |
