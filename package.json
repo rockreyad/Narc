@@ -12,7 +12,7 @@
     "check": "astro check",
     "pretify": "prettier --plugin=prettier-plugin-astro --write src",
     "prettier:check": "prettier --check --plugin=prettier-plugin-astro src",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --project=chromium",
     "commitlint": "commitlint --edit"
   },
   "dependencies": {
